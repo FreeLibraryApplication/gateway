@@ -1,0 +1,31 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version "3.4.3"
+}
+
+group = 'itmo.deniill'
+version = 'unspecified'
+
+repositories {
+	mavenCentral()
+}
+
+// это для автоматический перезагрузки, но походу не работает
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-web:3.4.3")
+	implementation ("org.springframework.boot:spring-boot-starter-thymeleaf:3.4.3") // шаблонизатор
+	// для автоматической перезагрузки приложения при изменении статических файлов, не работает чет((
+	developmentOnly("org.springframework.boot:spring-boot-devtools:3.4.3")
+	testImplementation platform('org.junit:junit-bom:5.10.0')
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+test {
+	useJUnitPlatform()
+}
